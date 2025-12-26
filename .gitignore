@@ -1,3 +1,19 @@
+# Notebook checkpoints
+.ipynb_checkpoints/
+
+# Byte-compiled / optimized / DLL files
+*.pyc
+*.pyo
+
+# pycharm
+.idea/
+
+# Log files
+*.log
+
+# DBs
+*.db
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
