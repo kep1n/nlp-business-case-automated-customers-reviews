@@ -221,3 +221,8 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# CSVs
+*.csv
+*.1
+*.ini

@@ -25,6 +25,10 @@ spacy==3.7.2
 # Database
 sqlite3  # Built-in with Python
 
+# scraping
+requests==2.32.5
+beautifulsoup4==4.14.2
+
 # Optional: For better performance
 sentencepiece==0.1.99
 tokenizers==0.15.0

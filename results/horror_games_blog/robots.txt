@@ -1,0 +1,21 @@
+# robots.txt for Horror Games Review Intelligence
+
+User-agent: *
+Allow: /
+
+# Sitemap (update with your actual domain)
+# Sitemap: https://your-domain.com/sitemap.xml
+
+# Crawl delay (optional)
+Crawl-delay: 1
+
+# Specific paths
+Allow: /index.html
+Allow: /positive.html
+Allow: /neutral.html
+Allow: /negative.html
+Allow: /css/
+Allow: /assets/
+
+# Disallow nothing - allow all crawlers
+Disallow:

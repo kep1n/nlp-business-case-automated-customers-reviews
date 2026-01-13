@@ -1,0 +1,43 @@
+================================================================================
+DATA PREPROCESSING SUMMARY REPORT
+================================================================================
+
+ORIGINAL DATASET
+--------------------------------------------------------------------------------
+Total records: 98,755
+Columns: appid, author_id, review, review_date, playtime_review, playtime_forever, voted_up, votes_funny, votes_up, received_free, weighted_vote_score, steam_purchase, comment_count, recommendationid, text_length, word_count, label
+
+AFTER CLEANING
+--------------------------------------------------------------------------------
+Total records: 91,018
+Records removed: 7,737 (7.83%)
+
+AFTER BALANCING
+--------------------------------------------------------------------------------
+Total records: 54,146
+Sentiment distribution:
+  0: 27,073
+  1: 27,073
+
+FINAL DATA SPLITS
+--------------------------------------------------------------------------------
+Training set:   37,902 (70.0%)
+Validation set: 8,122 (15.0%)
+Test set:       8,122 (15.0%)
+Total:          54,146
+
+FILES GENERATED
+--------------------------------------------------------------------------------
+Visualizations:
+  - sentiment_distribution.png
+  - text_characteristics.png
+  - wordclouds.png
+  - sentiment_by_category.png
+
+Processed data:
+  - processed_data/train.csv
+  - processed_data/val.csv
+  - processed_data/test.csv
+  - processed_data/reviews_processed.db
+
+================================================================================

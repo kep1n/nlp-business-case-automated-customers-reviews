@@ -1,0 +1,44 @@
+Loading model: siebert/sentiment-roberta-large-english
+Device set to use cuda:0
+Running inference on 1000 reviews...
+✓ Predictions complete
+
+======================================================================
+SENTIMENT CLASSIFICATION EVALUATION RESULTS
+======================================================================
+
+---------------------------OVERALL METRICS----------------------------
+Accuracy:           88.30%
+ROC AUC Score:      0.9617
+
+----------------------------MACRO AVERAGES----------------------------
+Precision (Macro):  85.18%
+Recall (Macro):     89.41%
+F1-Score (Macro):   86.68%
+
+--------------------------WEIGHTED AVERAGES---------------------------
+Precision (Weighted): 89.89%
+Recall (Weighted):    88.30%
+F1-Score (Weighted):  88.63%
+
+--------------------------PER-CLASS METRICS---------------------------
+
+Negative (n=290):
+  Precision:  73.96%
+  Recall:     92.07%
+  F1-Score:   82.03%
+
+Positive (n=710):
+  Precision:  96.40%
+  Recall:     86.76%
+  F1-Score:   91.33%
+
+--------------------DETAILED CLASSIFICATION REPORT--------------------
+              precision    recall  f1-score   support
+
+    Negative     0.7396    0.9207    0.8203       290
+    Positive     0.9640    0.8676    0.9133       710
+
+    accuracy                         0.8830      1000
+   macro avg     0.8518    0.8941    0.8668      1000
+weighted avg     0.8989    0.8830    0.8863      1000

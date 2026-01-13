@@ -1,0 +1,44 @@
+Loading model: cardiffnlp/twitter-roberta-base-sentiment
+Device set to use cuda:0
+Running inference on 1000 reviews...
+✓ Predictions complete
+
+======================================================================
+SENTIMENT CLASSIFICATION EVALUATION RESULTS
+======================================================================
+
+---------------------------OVERALL METRICS----------------------------
+Accuracy:           38.30%
+ROC AUC Score:      0.4471
+
+----------------------------MACRO AVERAGES----------------------------
+Precision (Macro):  54.61%
+Recall (Macro):     53.16%
+F1-Score (Macro):   37.44%
+
+--------------------------WEIGHTED AVERAGES---------------------------
+Precision (Weighted): 65.17%
+Recall (Weighted):    38.30%
+F1-Score (Weighted):  34.30%
+
+--------------------------PER-CLASS METRICS---------------------------
+
+Negative (n=285):
+  Precision:  30.05%
+  Recall:     87.72%
+  F1-Score:   44.76%
+
+Positive (n=715):
+  Precision:  79.17%
+  Recall:     18.60%
+  F1-Score:   30.12%
+
+--------------------DETAILED CLASSIFICATION REPORT--------------------
+              precision    recall  f1-score   support
+
+    Negative     0.3005    0.8772    0.4476       285
+    Positive     0.7917    0.1860    0.3012       715
+
+    accuracy                         0.3830      1000
+   macro avg     0.5461    0.5316    0.3744      1000
+weighted avg     0.6517    0.3830    0.3430      1000

@@ -2,3 +2,7 @@ https://medium.com/codex/efficiently-scraping-steam-game-reviews-with-python-a-c
 https://steamdb.info/
 https://partner.steamgames.com/doc/store/getreviews
 
+roberta-uncased -- very bad results
+cardiffnlp/twitter-roberta-base-sentiment -- bad results
+siebert/sentiment-roberta-large-english -- good results
+distilbert-base-uncased -- meh

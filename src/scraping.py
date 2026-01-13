@@ -8,6 +8,7 @@ import logclass
 import bs4
 import utils
 import dbhandler
+import configparser
 
 from collections import defaultdict
 
@@ -102,7 +103,7 @@ class SteamAutoReviewer:
     def __init__(self, language: str = 'english', num_per_page: int = 100, review_type: str = 'all'):
         self.logger = logging.getLogger(PROJECT_LOGGER)
         self.base_url = 'https://store.steampowered.com/appreviews'
-        self.params = {'json': 1, 'language': language, 'cursor': '*', 'num_per_page': num_per_page, 'review_type': review_type}
+        self.params = {'json': 1, 'language': language, 'cursor': '*', 'num_per_page': num_per_page, 'review_type': review_type, 'day_range': 365}
         self.players_data = dict()
         self.reviews_data = []
         self.headers = {
@@ -271,49 +272,32 @@ class SteamAutoReviewer:
 
         self.reviews_data.append(dict(zip(fields, values)))
 
-    def collect_users_reviews(self, app_id, db):
-        for kind, values in self.iter_users_reviews(app_id):
-            if kind == "player":
-                db.insert(
-                    "players",
-                    ("author_id", "num_reviews", "num_games"),
-                    values,
-                )
-            elif kind == "review":
-                db.insert(
-                    "reviews",
-                    (
-                        "appid", "author_id", "review", "review_date",
-                        "playtime_review", "playtime_forever", "voted_up",
-                        "votes_funny", "votes_up", "received_free",
-                        "weighted_vote_score", "steam_purchase", "comment_count",
-                    ),
-                    values,
-                )
 
-
-def main():
+def main(database: str, html_file: str):
     log_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'logs', 'project_log.log')
     logger = logclass.ProjectLogger(log_path=log_path).get_logger()
     logger.info('Process started...')
-    # steam_scraper = SteamScraper(
-    #     r'E:\SynologyDrive\ironhack\week_14\day_2\project-nlp-business-case-automated-customers-reviews-v2\data\Survival_Horror_SteamDB.html')
-    # steam_scraper.process_data()
+    steam_scraper = SteamScraper(html_file)
+    steam_scraper.process_data()
 
-    # Insert values to the DB
-    sqlite_db = dbhandler.SQLiteProcessor(
-        r'E:\SynologyDrive\ironhack\week_14\day_2\project-nlp-business-case-automated-customers-reviews-v2\data\gamesDB.db')
-    # sqlite_db.bulk_insert("games", steam_scraper.games_data.values())
+    # Open the sqlite database class
+    sqlite_db = dbhandler.SQLiteProcessor(database)
 
     # Process reviews
-    steam_reviewer = SteamAutoReviewer(review_type='negative')
+    steam_reviewer = SteamAutoReviewer(review_type='all')
     # # Insert values to the DB
     for app_id in sqlite_db.get_steam_appids():
-    #     data = steam_reviewer.get_query_summary(app_id)
-    #     steam_reviewer.update_appids_data(app_id, 'games', data, sqlite_db)
+        # data = steam_reviewer.get_query_summary(app_id)
+        # steam_reviewer.update_appids_data(app_id, 'games', data, sqlite_db)
         steam_reviewer.fetch_and_store_reviews(app_id, sqlite_db)
-    # logger.info(f'Process finished successfully')
+    logger.info(f'Process finished successfully')
 
 
 if __name__ == '__main__':
-    main()
+    config_parser = configparser.ConfigParser()
+    config_parser.read('../config/config.ini')
+    # Local sqlite3 database with the datamodel
+    db = config_parser['DEV']['database']
+    # Local html file with 8k games - Survival Horror tag
+    html = config_parser['DEV']['html_scrap']
+    main(db, html)

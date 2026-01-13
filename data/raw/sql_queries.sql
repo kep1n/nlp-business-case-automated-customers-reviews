@@ -11,3 +11,6 @@ select count(*) from reviews
 -- DELETE FROM reviews WHERE rowid NOT IN (SELECT MIN(rowid) FROM reviews GROUP BY appid, author_id, review);
 
 -- delete from reviews where appid = 622650
+
+
+select reviews.review, reviews.weighted_vote_score, reviews_with_topics.topic_name from reviews INNER JOIN reviews_with_topics ON reviews.recommendationid = reviews_with_topics.recommendationid;

@@ -1,0 +1,59 @@
+Loading data from SQLite...
+✓ Loaded 1000 reviews
+  - Positive samples: 691
+  - Negative samples: 309
+
+================================================================================
+DATASET BALANCING (Method: OVERSAMPLE)
+================================================================================
+
+Before balancing:
+  1: 691
+  0: 309
+
+After balancing:
+  1: 691
+  0: 691
+
+Loading model: distilbert/distilbert-base-uncased
+✓ Predictions complete
+
+======================================================================
+SENTIMENT CLASSIFICATION EVALUATION RESULTS
+======================================================================
+
+---------------------------OVERALL METRICS----------------------------
+Accuracy:           47.40%
+ROC AUC Score:      0.4460
+
+----------------------------MACRO AVERAGES----------------------------
+Precision (Macro):  44.08%
+Recall (Macro):     47.40%
+F1-Score (Macro):   38.84%
+
+--------------------------WEIGHTED AVERAGES---------------------------
+Precision (Weighted): 44.08%
+Recall (Weighted):    47.40%
+F1-Score (Weighted):  38.84%
+
+--------------------------PER-CLASS METRICS---------------------------
+
+Negative (n=691):
+  Precision:  39.66%
+  Recall:     9.99%
+  F1-Score:   15.95%
+
+Positive (n=691):
+  Precision:  48.51%
+  Recall:     84.80%
+  F1-Score:   61.72%
+
+--------------------DETAILED CLASSIFICATION REPORT--------------------
+              precision    recall  f1-score   support
+
+    Negative     0.3966    0.0999    0.1595       691
+    Positive     0.4851    0.8480    0.6172       691
+
+    accuracy                         0.4740      1382
+   macro avg     0.4408    0.4740    0.3884      1382
+weighted avg     0.4408    0.4740    0.3884      1382

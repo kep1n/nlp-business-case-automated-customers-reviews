@@ -1,0 +1,46 @@
+Loading model: roberta-base
+Some weights of RobertaForSequenceClassification were not initialized from the model checkpoint at roberta-base and are newly initialized: ['classifier.dense.bias', 'classifier.dense.weight', 'classifier.out_proj.bias', 'classifier.out_proj.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+Device set to use cuda:0
+Running inference on 1000 reviews...
+✓ Predictions complete
+
+======================================================================
+SENTIMENT CLASSIFICATION EVALUATION RESULTS
+======================================================================
+
+---------------------------OVERALL METRICS----------------------------
+Accuracy:           71.10%
+ROC AUC Score:      0.3738
+
+----------------------------MACRO AVERAGES----------------------------
+Precision (Macro):  35.55%
+Recall (Macro):     50.00%
+F1-Score (Macro):   41.55%
+
+--------------------------WEIGHTED AVERAGES---------------------------
+Precision (Weighted): 50.55%
+Recall (Weighted):    71.10%
+F1-Score (Weighted):  59.09%
+
+--------------------------PER-CLASS METRICS---------------------------
+
+Negative (n=289):
+  Precision:  0.00%
+  Recall:     0.00%
+  F1-Score:   0.00%
+
+Positive (n=711):
+  Precision:  71.10%
+  Recall:     100.00%
+  F1-Score:   83.11%
+
+--------------------DETAILED CLASSIFICATION REPORT--------------------
+              precision    recall  f1-score   support
+
+    Negative     0.0000    0.0000    0.0000       289
+    Positive     0.7110    1.0000    0.8311       711
+
+    accuracy                         0.7110      1000
+   macro avg     0.3555    0.5000    0.4155      1000
+weighted avg     0.5055    0.7110    0.5909      1000

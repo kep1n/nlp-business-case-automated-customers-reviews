@@ -1,0 +1,235 @@
+2025/12/30 10:32:59 INFO mlflow.tracking.fluent: Autologging successfully enabled for keras.
+2025/12/30 10:32:59 INFO mlflow.tracking.fluent: Autologging successfully enabled for sklearn.
+2025/12/30 10:32:59 INFO mlflow.tracking.fluent: Autologging successfully enabled for statsmodels.
+2025/12/30 10:32:59 INFO mlflow.tracking.fluent: Autologging successfully enabled for tensorflow.
+2025/12/30 10:32:59 INFO mlflow.tracking.fluent: Autologging successfully enabled for transformers.
+2025/12/30 10:32:59 WARNING mlflow.spark: With Pyspark >= 3.2, PYSPARK_PIN_THREAD environment variable must be set to false for Spark datasource autologging to work.
+2025/12/30 10:32:59 INFO mlflow.tracking.fluent: Autologging successfully enabled for pyspark.
+
+======================================================================
+STEP 1: LOADING DATA
+======================================================================
+✓ Loaded 37902 from train
+Sentiment distribution: Positive=18951, Negative=18951
+✓ Loaded 8122 from validation
+Sentiment distribution: Positive=4061, Negative=4061
+✓ Loaded 8122 from test
+Sentiment distribution: Positive=4061, Negative=4061
+Training set:   37902 samples
+Validation set: 8122 samples
+Test set:       8122 samples
+
+======================================================================
+STEP 3: TRAINING MODEL
+======================================================================
+Using device: cuda
+
+======================================================================
+FINE-TUNING DISTILBERT/DISTILBERT-BASE-UNCASED
+Using LoRA: True
+======================================================================
+Training samples: 37902
+Validation samples: 8122
+Epochs: 3
+Batch size: 16
+Learning rate: 0.0003
+
+Loading tokenizer and model...
+tokenizer_config.json: 100%
+ 48.0/48.0 [00:00<00:00, 4.88kB/s]
+config.json: 100%
+ 483/483 [00:00<00:00, 44.0kB/s]
+vocab.txt: 
+ 232k/? [00:00<00:00, 8.10MB/s]
+tokenizer.json: 
+ 466k/? [00:00<00:00, 10.1MB/s]
+model.safetensors: 100%
+ 268M/268M [00:02<00:00, 256MB/s]
+Some weights of DistilBertForSequenceClassification were not initialized from the model checkpoint at distilbert/distilbert-base-uncased and are newly initialized: ['classifier.bias', 'classifier.weight', 'pre_classifier.bias', 'pre_classifier.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+
+🔧 Applying LoRA configuration...
+✓ Trainable params: 739,586 (1.09%)
+  Total params: 67,694,596
+trainable params: 739,586 || all params: 67,694,596 || trainable%: 1.0925
+
+Preparing datasets...
+Tokenizing...
+Parameter 'function'=<bound method SentimentClassifierWithLoRA.tokenize_function of <__main__.SentimentClassifierWithLoRA object at 0x7ea2200949e0>> of the transform datasets.arrow_dataset.Dataset._map_single couldn't be hashed properly, a random hash was used instead. Make sure your transforms and parameters are serializable with pickle or dill for the dataset fingerprinting and caching to work. If you reuse this transform, the caching mechanism will consider it to be different from the previous calls and recompute everything. This warning is only showed once. Subsequent hashing failures won't be showed.
+WARNING:datasets.fingerprint:Parameter 'function'=<bound method SentimentClassifierWithLoRA.tokenize_function of <__main__.SentimentClassifierWithLoRA object at 0x7ea2200949e0>> of the transform datasets.arrow_dataset.Dataset._map_single couldn't be hashed properly, a random hash was used instead. Make sure your transforms and parameters are serializable with pickle or dill for the dataset fingerprinting and caching to work. If you reuse this transform, the caching mechanism will consider it to be different from the previous calls and recompute everything. This warning is only showed once. Subsequent hashing failures won't be showed.
+Map: 100%
+ 37902/37902 [00:18<00:00, 2337.95 examples/s]
+Map: 100%
+ 8122/8122 [00:03<00:00, 2269.49 examples/s]
+
+======================================================================
+TRAINING STARTED
+======================================================================
+
+ [7107/7107 21:45, Epoch 3/3]
+Epoch	Training Loss	Validation Loss	Accuracy	Precision	Recall	F1
+1	0.298900	0.274722	0.879094	0.879256	0.879094	0.879081
+2	0.281700	0.261965	0.887343	0.887399	0.887343	0.887339
+3	0.247100	0.260658	0.892884	0.892897	0.892884	0.892883
+
+======================================================================
+TRAINING COMPLETE
+======================================================================
+
+💾 Saving LoRA adapter to ./lora_sentiment_adapter...
+✓ LoRA adapter saved (only 3.73 MB)
+
+======================================================================
+STEP 4: EVALUATING MODEL (After Training)
+======================================================================
+Making predictions on 8122 samples...
+  Processed 320/8122 samples
+  Processed 640/8122 samples
+  Processed 960/8122 samples
+  Processed 1280/8122 samples
+  Processed 1600/8122 samples
+  Processed 1920/8122 samples
+  Processed 2240/8122 samples
+  Processed 2560/8122 samples
+  Processed 2880/8122 samples
+  Processed 3200/8122 samples
+  Processed 3520/8122 samples
+  Processed 3840/8122 samples
+  Processed 4160/8122 samples
+  Processed 4480/8122 samples
+  Processed 4800/8122 samples
+  Processed 5120/8122 samples
+  Processed 5440/8122 samples
+  Processed 5760/8122 samples
+  Processed 6080/8122 samples
+  Processed 6400/8122 samples
+  Processed 6720/8122 samples
+  Processed 7040/8122 samples
+  Processed 7360/8122 samples
+  Processed 7680/8122 samples
+  Processed 8000/8122 samples
+✓ Predictions complete
+
+============================================================
+SENTIMENT CLASSIFICATION RESULTS
+============================================================
+
+Overall Accuracy: 89.15%
+
+Macro Averages:
+  Precision: 89.16%
+  Recall:    89.15%
+  F1-Score:  89.15%
+
+Per-Class Metrics:
+------------------------------------------------------------
+Negative (n=4061):
+  Precision: 89.65%
+  Recall:    88.52%
+  F1-Score:  89.08%
+
+Positive (n=4061):
+  Precision: 88.67%
+  Recall:    89.78%
+  F1-Score:  89.22%
+
+
+Detailed Classification Report:
+              precision    recall  f1-score   support
+
+    Negative       0.90      0.89      0.89      4061
+    Positive       0.89      0.90      0.89      4061
+
+    accuracy                           0.89      8122
+   macro avg       0.89      0.89      0.89      8122
+weighted avg       0.89      0.89      0.89      8122
+
+Some weights of DistilBertForSequenceClassification were not initialized from the model checkpoint at distilbert/distilbert-base-uncased and are newly initialized: ['classifier.bias', 'classifier.weight', 'pre_classifier.bias', 'pre_classifier.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+✓ Confusion matrix saved to distilbert_distilbert-base-uncased_lora_confusion_matrix.png
+
+======================================================================
+STEP 5: TESTING MODEL LOADING
+======================================================================
+Using device: cuda
+
+Loading model from ./lora_sentiment_adapter...
+Loading base model: distilbert/distilbert-base-uncased
+Loading LoRA adapter...
+Merging adapter with base model for inference...
+✓ Model loaded and ready for inference
+
+Making predictions with loaded model...
+Making predictions on 8122 samples...
+  Processed 320/8122 samples
+  Processed 640/8122 samples
+  Processed 960/8122 samples
+  Processed 1280/8122 samples
+  Processed 1600/8122 samples
+  Processed 1920/8122 samples
+  Processed 2240/8122 samples
+  Processed 2560/8122 samples
+  Processed 2880/8122 samples
+  Processed 3200/8122 samples
+  Processed 3520/8122 samples
+  Processed 3840/8122 samples
+  Processed 4160/8122 samples
+  Processed 4480/8122 samples
+  Processed 4800/8122 samples
+  Processed 5120/8122 samples
+  Processed 5440/8122 samples
+  Processed 5760/8122 samples
+  Processed 6080/8122 samples
+  Processed 6400/8122 samples
+  Processed 6720/8122 samples
+  Processed 7040/8122 samples
+  Processed 7360/8122 samples
+  Processed 7680/8122 samples
+  Processed 8000/8122 samples
+✓ Predictions complete
+
+============================================================
+SENTIMENT CLASSIFICATION RESULTS
+============================================================
+
+Overall Accuracy: 89.17%
+
+Macro Averages:
+  Precision: 89.17%
+  Recall:    89.17%
+  F1-Score:  89.16%
+
+Per-Class Metrics:
+------------------------------------------------------------
+Negative (n=4061):
+  Precision: 89.67%
+  Recall:    88.52%
+  F1-Score:  89.10%
+
+Positive (n=4061):
+  Precision: 88.67%
+  Recall:    89.81%
+  F1-Score:  89.23%
+
+
+Detailed Classification Report:
+              precision    recall  f1-score   support
+
+    Negative       0.90      0.89      0.89      4061
+    Positive       0.89      0.90      0.89      4061
+
+    accuracy                           0.89      8122
+   macro avg       0.89      0.89      0.89      8122
+weighted avg       0.89      0.89      0.89      8122
+
+✓ Confusion matrix saved to distilbert_distilbert-base-uncased_loaded_confusion_matrix.png
+
+✓ Loaded model predictions match original: False
+
+======================================================================
+PIPELINE COMPLETE!
+======================================================================
+
+LoRA Adapter saved to: ./lora_sentiment_adapter
+Test Accuracy: 89.15%
+Test F1 (Macro): 89.15%

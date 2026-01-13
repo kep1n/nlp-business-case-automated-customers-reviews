@@ -1,4 +1,4 @@
-# Amazon Reviews Analysis Pipeline with MLflow
+# Steam Reviews Analysis Pipeline with MLflow
 
 Complete pipeline for sentiment classification, product clustering, and review summarization with MLflow tracking.
 
@@ -102,7 +102,7 @@ Navigate to your MLflow server to see:
 ### Console Output
 ```
 ============================================================
-AMAZON REVIEWS ANALYSIS PIPELINE
+STEAM REVIEWS ANALYSIS PIPELINE
 ============================================================
 
 [1/4] Loading data...

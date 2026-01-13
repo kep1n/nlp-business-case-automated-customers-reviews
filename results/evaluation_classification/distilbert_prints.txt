@@ -1,0 +1,44 @@
+Loading model: distilbert-base-uncased
+Device set to use cuda:0
+Running inference on 1000 reviews...
+✓ Predictions complete
+
+======================================================================
+SENTIMENT CLASSIFICATION EVALUATION RESULTS
+======================================================================
+
+---------------------------OVERALL METRICS----------------------------
+Accuracy:           65.00%
+ROC AUC Score:      0.5870
+
+----------------------------MACRO AVERAGES----------------------------
+Precision (Macro):  55.00%
+Recall (Macro):     54.52%
+F1-Score (Macro):   54.63%
+
+--------------------------WEIGHTED AVERAGES---------------------------
+Precision (Weighted): 63.46%
+Recall (Weighted):    65.00%
+F1-Score (Weighted):  64.13%
+
+--------------------------PER-CLASS METRICS---------------------------
+
+Negative (n=281):
+  Precision:  35.68%
+  Recall:     30.60%
+  F1-Score:   32.95%
+
+Positive (n=719):
+  Precision:  74.31%
+  Recall:     78.44%
+  F1-Score:   76.32%
+
+--------------------DETAILED CLASSIFICATION REPORT--------------------
+              precision    recall  f1-score   support
+
+    Negative     0.3568    0.3060    0.3295       281
+    Positive     0.7431    0.7844    0.7632       719
+
+    accuracy                         0.6500      1000
+   macro avg     0.5500    0.5452    0.5463      1000
+weighted avg     0.6346    0.6500    0.6413      1000

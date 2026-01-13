@@ -1,0 +1,221 @@
+2025/12/30 11:11:37 INFO mlflow.tracking.fluent: Autologging successfully enabled for keras.
+2025/12/30 11:11:37 INFO mlflow.tracking.fluent: Autologging successfully enabled for statsmodels.
+2025/12/30 11:11:37 INFO mlflow.tracking.fluent: Autologging successfully enabled for transformers.
+2025/12/30 11:11:37 WARNING mlflow.spark: With Pyspark >= 3.2, PYSPARK_PIN_THREAD environment variable must be set to false for Spark datasource autologging to work.
+2025/12/30 11:11:37 INFO mlflow.tracking.fluent: Autologging successfully enabled for pyspark.
+
+======================================================================
+STEP 1: LOADING DATA
+======================================================================
+✓ Loaded 37902 from train
+Sentiment distribution: Positive=18951, Negative=18951
+✓ Loaded 8122 from validation
+Sentiment distribution: Positive=4061, Negative=4061
+✓ Loaded 8122 from test
+Sentiment distribution: Positive=4061, Negative=4061
+Training set:   37902 samples
+Validation set: 8122 samples
+Test set:       8122 samples
+
+======================================================================
+STEP 3: TRAINING MODEL
+======================================================================
+Using device: cuda
+
+======================================================================
+FINE-TUNING GOOGLE-BERT/BERT-BASE-UNCASED
+Using LoRA: True
+======================================================================
+Training samples: 37902
+Validation samples: 8122
+Epochs: 3
+Batch size: 16
+Learning rate: 0.0003
+
+Loading tokenizer and model...
+Some weights of BertForSequenceClassification were not initialized from the model checkpoint at google-bert/bert-base-uncased and are newly initialized: ['classifier.bias', 'classifier.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+
+🔧 Applying LoRA configuration...
+✓ Trainable params: 296,450 (0.27%)
+  Total params: 109,780,228
+trainable params: 296,450 || all params: 109,780,228 || trainable%: 0.2700
+
+Preparing datasets...
+Tokenizing...
+Map: 100%
+ 37902/37902 [00:21<00:00, 1963.32 examples/s]
+Map: 100%
+ 8122/8122 [00:05<00:00, 1806.66 examples/s]
+
+======================================================================
+TRAINING STARTED
+======================================================================
+
+ [7107/7107 42:56, Epoch 3/3]
+Epoch	Training Loss	Validation Loss	Accuracy	Precision	Recall	F1
+1	0.246600	0.267258	0.889313	0.889446	0.889313	0.889304
+2	0.275100	0.246523	0.893745	0.893745	0.893745	0.893745
+3	0.232500	0.255786	0.895592	0.895598	0.895592	0.895592
+
+======================================================================
+TRAINING COMPLETE
+======================================================================
+
+💾 Saving LoRA adapter to ./lora_sentiment_adapter_bert_base...
+✓ LoRA adapter saved (only 2.04 MB)
+
+======================================================================
+STEP 4: EVALUATING MODEL (After Training)
+======================================================================
+Making predictions on 8122 samples...
+  Processed 320/8122 samples
+  Processed 640/8122 samples
+  Processed 960/8122 samples
+  Processed 1280/8122 samples
+  Processed 1600/8122 samples
+  Processed 1920/8122 samples
+  Processed 2240/8122 samples
+  Processed 2560/8122 samples
+  Processed 2880/8122 samples
+  Processed 3200/8122 samples
+  Processed 3520/8122 samples
+  Processed 3840/8122 samples
+  Processed 4160/8122 samples
+  Processed 4480/8122 samples
+  Processed 4800/8122 samples
+  Processed 5120/8122 samples
+  Processed 5440/8122 samples
+  Processed 5760/8122 samples
+  Processed 6080/8122 samples
+  Processed 6400/8122 samples
+  Processed 6720/8122 samples
+  Processed 7040/8122 samples
+  Processed 7360/8122 samples
+  Processed 7680/8122 samples
+  Processed 8000/8122 samples
+✓ Predictions complete
+
+============================================================
+SENTIMENT CLASSIFICATION RESULTS
+============================================================
+
+Overall Accuracy: 89.85%
+
+Macro Averages:
+  Precision: 89.86%
+  Recall:    89.85%
+  F1-Score:  89.85%
+
+Per-Class Metrics:
+------------------------------------------------------------
+Negative (n=4061):
+  Precision: 89.74%
+  Recall:    90.00%
+  F1-Score:  89.87%
+
+Positive (n=4061):
+  Precision: 89.97%
+  Recall:    89.71%
+  F1-Score:  89.84%
+
+
+Detailed Classification Report:
+              precision    recall  f1-score   support
+
+    Negative       0.90      0.90      0.90      4061
+    Positive       0.90      0.90      0.90      4061
+
+    accuracy                           0.90      8122
+   macro avg       0.90      0.90      0.90      8122
+weighted avg       0.90      0.90      0.90      8122
+
+✓ Confusion matrix saved to google-bert_bert-base-uncased_lora_confusion_matrix.png
+
+======================================================================
+STEP 5: TESTING MODEL LOADING
+======================================================================
+Using device: cuda
+
+Loading model from ./lora_sentiment_adapter_bert_base...
+Loading base model: google-bert/bert-base-uncased
+Some weights of BertForSequenceClassification were not initialized from the model checkpoint at google-bert/bert-base-uncased and are newly initialized: ['classifier.bias', 'classifier.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+Loading LoRA adapter...
+Merging adapter with base model for inference...
+✓ Model loaded and ready for inference
+
+Making predictions with loaded model...
+Making predictions on 8122 samples...
+  Processed 320/8122 samples
+  Processed 640/8122 samples
+  Processed 960/8122 samples
+  Processed 1280/8122 samples
+  Processed 1600/8122 samples
+  Processed 1920/8122 samples
+  Processed 2240/8122 samples
+  Processed 2560/8122 samples
+  Processed 2880/8122 samples
+  Processed 3200/8122 samples
+  Processed 3520/8122 samples
+  Processed 3840/8122 samples
+  Processed 4160/8122 samples
+  Processed 4480/8122 samples
+  Processed 4800/8122 samples
+  Processed 5120/8122 samples
+  Processed 5440/8122 samples
+  Processed 5760/8122 samples
+  Processed 6080/8122 samples
+  Processed 6400/8122 samples
+  Processed 6720/8122 samples
+  Processed 7040/8122 samples
+  Processed 7360/8122 samples
+  Processed 7680/8122 samples
+  Processed 8000/8122 samples
+✓ Predictions complete
+
+============================================================
+SENTIMENT CLASSIFICATION RESULTS
+============================================================
+
+Overall Accuracy: 89.87%
+
+Macro Averages:
+  Precision: 89.87%
+  Recall:    89.87%
+  F1-Score:  89.87%
+
+Per-Class Metrics:
+------------------------------------------------------------
+Negative (n=4061):
+  Precision: 89.76%
+  Recall:    90.00%
+  F1-Score:  89.88%
+
+Positive (n=4061):
+  Precision: 89.98%
+  Recall:    89.73%
+  F1-Score:  89.85%
+
+
+Detailed Classification Report:
+              precision    recall  f1-score   support
+
+    Negative       0.90      0.90      0.90      4061
+    Positive       0.90      0.90      0.90      4061
+
+    accuracy                           0.90      8122
+   macro avg       0.90      0.90      0.90      8122
+weighted avg       0.90      0.90      0.90      8122
+
+✓ Confusion matrix saved to google-bert_bert-base-uncased_loaded_confusion_matrix.png
+
+✓ Loaded model predictions match original: False
+
+======================================================================
+PIPELINE COMPLETE!
+======================================================================
+
+LoRA Adapter saved to: ./lora_sentiment_adapter_bert_base
+Test Accuracy: 89.85%
+Test F1 (Macro): 89.85%
