@@ -2,6 +2,8 @@
 
 Complete pipeline for sentiment classification, product clustering, and review summarization with MLflow tracking.
 
+NOTE: This repository is currently a Work in Progress (WIP) / experimental / proof-of-concept. Core features are implemented, but several cases and auxiliary modules are not functional.
+
 ## 📋 Prerequisites
 
 - Python 3.8+
@@ -124,33 +126,6 @@ PIPELINE COMPLETED SUCCESSFULLY!
 ============================================================
 ```
 
-## 🔧 Customization
-
-### Change Sentiment Model
-
-Edit the `main()` function:
-
-```python
-sentiment_model, sentiment_metrics = run_sentiment_classification(
-    df,
-    model_name="roberta-base"  # or bert-base-uncased, cardiffnlp/twitter-roberta-base-sentiment
-)
-```
-
-### Adjust Number of Clusters
-
-```python
-N_CLUSTERS = 6  # Change from 5 to 6
-```
-
-### Use Different Summarization Model
-
-In `ReviewSummarizer.__init__()`:
-
-```python
-summarizer = ReviewSummarizer(model_name="google/flan-t5-large")
-```
-
 ## 📈 Model Performance
 
 Expected performance (depends on your dataset):
@@ -174,7 +149,7 @@ batch_size=8  # instead of 16
 ### MLflow Authentication Failed
 Check your credentials in `.env`:
 ```bash
-curl -u admin:password http://mlflow.subdomain.synology.com/health
+curl -u admin:password http://databricks.domain.com/health
 ```
 
 ### Database Not Found
