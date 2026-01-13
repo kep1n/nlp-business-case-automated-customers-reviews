@@ -9,6 +9,10 @@ This static website showcases sentiment analysis results from Steam horror game 
 - **Mixed Reviews**: Wait for sale recommendations
 - **Mostly Negative**: Proceed with caution
 
+NOTE: you can download the html files and css folder to run it locally:
+
+![Capture](./img/cap1.png)
+
 ## Features
 
 - Modern, minimalist design with dark theme
