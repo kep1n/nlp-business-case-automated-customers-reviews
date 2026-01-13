@@ -7,7 +7,7 @@ NOTE: This repository is currently a Work in Progress (WIP) / experimental / pro
 ## 📋 Prerequisites
 
 - Python 3.8+
-- SQLite database with labeled reviews
+- SQLite database with labeled reviews (not pushed)
 - MLflow server with authentication enabled
 - GPU recommended (but not required)
 
@@ -167,17 +167,12 @@ pip install -r requirements.txt --upgrade
 ## 📂 Project Structure
 
 ```
-.
-├── complete_mlflow_sentiment_pipeline.py  # Main pipeline
-├── requirements.txt                       # Dependencies
-├── .env.template                          # Environment template
-├── .env                                   # Your credentials (gitignored)
-├── reviews.db                             # Your SQLite database
-├── results/                               # Training outputs
-├── logs/                                  # Training logs
-├── confusion_matrix.png                   # Generated plots
-├── cluster_distribution.png
-└── summary_Category_*.md                  # Generated summaries
+├── requirements.txt               # Dependencies
+├── data/                          # General data files (datamodel, html for scraping)
+├── notebooks/                     # Tests and tries
+├── results/                       # Outputs
+├── src/                           # Source code
+└── README.md                      # Generated summaries
 ```
 
 ## 🔐 Security Notes
@@ -186,7 +181,6 @@ pip install -r requirements.txt --upgrade
    ```
    .env
    *.db
-   results/
    logs/
    ```
 
